@@ -1,0 +1,89 @@
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+void display(vector<int>&v)
+{
+	for(int i=0;i<v.size();i++)
+	cout<<""<<v[i]<<" ";
+	cout<<endl;
+}
+
+void scalar(vector<int>&v)
+{
+	int v_scalar;
+	cout<<"Enter scalar : ";
+	cin>>v_scalar;
+	for(int i=0;i<v.size();i++)
+		v[i]*=v_scalar;
+	display(v);
+}
+
+void position(vector<int>&v)
+{
+	int v_position;
+	cout<<"Enter position : ";
+	cin>>v_position;
+	vector<int>::iterator itr2=v.begin();
+	itr2+=v_position;
+	v.insert(itr2,1,100);
+	display(v);
+}
+
+void it(vector<int>&v)
+{
+	int e;
+	cout<<"Iterator created"<<endl;
+	vector<int>::iterator itr1=v.begin();
+	itr1=itr1+2;
+	cout<<"Enter element : ";
+	cin>>e;
+	v.insert(itr1,1,e);
+	display(v);
+}
+	
+		
+int main()
+{
+	int choice;
+	char ch='Y';
+	vector<int>v;
+	cout<<"Initial size of vector : "<<v.size()<<endl;
+	int v_element,v_size;
+	cout<<"Enter size of vector : ";
+	cin>>v_size;
+	cout<<"Enter "<<v_size<<" elements : "<<endl;
+	for(int i=0;i<v_size;i++)
+	{
+		cin>>v_element;
+		v.push_back(v_element);
+	}
+	
+	while(ch!='N' || ch!='n')
+	{ 
+		cout<<endl;
+		cout<<"1.Multiply all elements with a scalar"<<endl;
+		cout<<"2.Insert an element at a position"<<endl;
+		cout<<"3.Insert an element in the beginning"<<endl;
+	
+		cout<<endl<<"Enter your choice : ";
+		cin>>choice;
+		
+		switch(choice)
+		{
+			case 1 : scalar(v);
+					 break;
+			case 2 : position(v);
+					 break;
+			case 3 : it(v);
+					 break;
+			default : cout<<"Invalid input!"<<endl;
+		}
+		
+		cout<<endl<<"Do you want to continue? Y/N  : ";
+		cin>>ch;		 		 		 
+	}
+	
+	return 0;
+}			
