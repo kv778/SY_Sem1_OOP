@@ -1,0 +1,36 @@
+#include<iostream>
+#include<fstream>
+
+using namespace std;
+
+int main()
+{
+	fstream f;
+	string s;
+	char ch;
+	f.open("hello.txt",ios::out);
+	if(!f)
+	{
+		cout<<"Error opening file!"<<endl;
+		return 0;
+	}
+	cout<<"Enter file name to be created : ";
+	cin>>s;
+	f<<s;
+	f.close();
+	
+	f.open("hello.txt",ios::in);
+	if(!f)
+	{
+		cout<<"Error opening file!"<<endl;
+		return 0;
+	}
+	while(!f.eof())
+	{
+		f>>ch;
+		cout<<ch;
+	}	
+	f.close();
+	
+	return 0;
+}
