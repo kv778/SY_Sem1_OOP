@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+class complex
+ {
+     float real;
+     float imaginary;
+    public:
+        complex()//default constructor
+        {
+             real=0;
+            imaginary=0;
+         }
+        complex operator+(complex);//for addition
+        complex operator*(complex);//for multiplication
+        //friend functions for insertion
+        friend istream &operator >>(istream &input,complex &t)
+        {
+            cout<<"Enter the real part";
+            input>>t.real;
+            cout<<"Enter the imaginary part";
+            input>>t.imaginary;
+         }
+         //friend functions for extraction
+        friend ostream &operator <<(ostream &output,complex &t)
+        {
+            output<<t.real<<"+"<<t.imaginary<<"i\n";
+        }
+};
+complex complex::operator+(complex c)
+{
+     complex temp;
+     temp.real=real+c.real;
+     temp.imaginary=imaginary+c.imaginary;
+     return(temp);
+  }
+complex complex::operator*(complex c)
+ {
+      complex temp2;
+       temp2.real=(real*c.real)-(imaginary*c.imaginary);
+       temp2.imaginary=(imaginary*c.real)+(real*c.imaginary);
+       return (temp2);
+}
+int main()
+ {
+        complex c1,c2,c3,c4;
+        cout<<"Default constructor value=\n";
+        cout<<c1;
+        cout<<"\nEnter the 1st number\n";
+        cin>>c1;//insertion
+        cout<<"\nEnter the 2nd number\n";
+        cin>>c2;
+        c3=c1+c2;//addition
+        c4=c1*c2;//multiplication
+        cout<<"\nThe first number is ";
+        cout<<c1;//extraction
+        cout<<"\nThe second number is ";
+        cout<<c2;
+        cout<<"\nThe addition is ";
+        cout<<c3;
+        cout<<"\nThe multiplication is ";
+        cout<<c4;
+        return 0;
+}
